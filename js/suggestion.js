@@ -23,6 +23,7 @@ const stop = () => {
   resetState()
   updateRemainingTimeText()
   updateStatsTexts()
+  target.innerText = 'click to start'
 }
 
 target.addEventListener('click', () => {
@@ -90,10 +91,11 @@ const updateStatsTexts = () => {
 }
 
 const showResult = () => {
-  const accuracy = ((state.score / (state.score + state.missed)) * 100).toFixed(2)
-  console.log(state.score, state.missed)
+  const totalTyped = state.score + state.missed
+  const accuracy = ((state.score / totalTyped) * 100).toFixed(2)
+
   alert(`
   ${state.score} letters, 
   ${state.missed} miss,
-  ${!!accuracy ? accuracy : 0}% accuracy`)
+  ${totalTyped ? accuracy : 0}% accuracy`)
 }
