@@ -1,0 +1,14 @@
+{
+  "name": "typing-game",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/masaru-suzuki/typing-game.git",
+  "author": "Hajime-Suzuki <hajime.doublebass@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "prettier": "^1.19.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0"
+  }
+}
