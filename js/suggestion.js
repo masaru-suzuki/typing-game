@@ -3,10 +3,40 @@ const scoreLavel = document.getElementById('score')
 const missLabel = document.getElementById('miss')
 const timerLabel = document.getElementById('timer')
 
-const TIME_LIMIT = 3 * 1000
-const REFRESH_RATE = 10
+const TIME_LIMIT = 5 * 1000
+const REFRESH_RATE = 60
 let interval
 let state
+
+const start = () => {
+  resetState()
+  updateStatsTexts()
+  state.isPlaying = true
+  interval = window.setInterval(() => {
+    countDown()
+  }, REFRESH_RATE)
+}
+
+const stop = () => {
+  clearInterval(interval)
+  showResult()
+  resetState()
+  updateRemainingTimeText()
+  updateStatsTexts()
+}
+
+target.addEventListener('click', () => {
+  if (state && state.isPlaying) return
+  start()
+})
+
+window.addEventListener('keydown', e => {
+  if (!state || !state.isPlaying) return
+  typeWord(e.key)
+  updateStatsTexts()
+})
+
+/////////////////////////////////////////////////////////////////////
 
 const getRandomWord = () => {
   const words = ['red', 'blue', 'gray', 'gold', 'silver']
@@ -67,31 +97,3 @@ const showResult = () => {
   ${state.missed} miss,
   ${!!accuracy ? accuracy : 0}% accuracy`)
 }
-
-const start = () => {
-  resetState()
-  updateStatsTexts()
-  state.isPlaying = true
-  interval = window.setInterval(() => {
-    countDown()
-  }, REFRESH_RATE)
-}
-
-const stop = () => {
-  clearInterval(interval)
-  showResult()
-  resetState()
-  updateRemainingTimeText()
-  updateStatsTexts()
-}
-
-target.addEventListener('click', () => {
-  if (state && state.isPlaying) return
-  start()
-})
-
-window.addEventListener('keydown', e => {
-  if (!state || !state.isPlaying) return
-  typeWord(e.key)
-  updateStatsTexts()
-})
