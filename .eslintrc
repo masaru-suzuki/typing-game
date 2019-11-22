@@ -1,0 +1,7 @@
+{
+  "extends": "eslint:recommended",
+  "rules": {
+    "space-in-brackets": ["error", "always"],
+    "array-bracket-spacing": ["error", "always"]
+  }
+}
